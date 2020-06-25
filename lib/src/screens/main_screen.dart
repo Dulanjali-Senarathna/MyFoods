@@ -70,6 +70,6 @@ ProfilePage profilePage;
         ],
       ),
       body: currentPage,
-    );
+    ); 
   }
 }
