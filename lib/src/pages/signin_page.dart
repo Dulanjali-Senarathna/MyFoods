@@ -104,7 +104,7 @@ class _SignInPageState extends State<SignInPage>{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children :<Widget>[
-                    Text("Don't have an account?",  style: TextStyle(fontSize:18.0, color:Color.(0xFFBDC2CB), fontWeight:FontWeight.bold)),
+                    Text("Don't have an account?",  style: TextStyle(fontSize:18.0, color:Color(0xFFBDC2CB), fontWeight:FontWeight.bold),),
                     SizedBox(width:10.0),
                     Text("Sign Up",  style: TextStyle(fontSize:18.0, color:Colors.blueAccent, fontWeight:FontWeight.bold))
                   ],
