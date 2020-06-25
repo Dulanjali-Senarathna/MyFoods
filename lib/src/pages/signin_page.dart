@@ -1,3 +1,4 @@
+import '../pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget
@@ -106,7 +107,18 @@ class _SignInPageState extends State<SignInPage>{
                   children :<Widget>[
                     Text("Don't have an account?",  style: TextStyle(fontSize:18.0, color:Color(0xFFBDC2CB), fontWeight:FontWeight.bold),),
                     SizedBox(width:10.0),
-                    Text("Sign Up",  style: TextStyle(fontSize:18.0, color:Colors.blueAccent, fontWeight:FontWeight.bold))
+                    GestureDetector(
+                       onTap: (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context ) => SignUpPage()));
+                    },
+                      child: Text("Sign Up",  
+                      style: TextStyle(
+                      fontSize:18.0, 
+                      color:Colors.blueAccent, 
+                      fontWeight:FontWeight.bold),
+                      ),
+                    ),
+
                   ],
                 ),
           ],
