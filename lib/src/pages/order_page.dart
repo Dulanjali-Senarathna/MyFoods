@@ -1,3 +1,4 @@
+import 'package:MyFoods/src/pages/signin_page.dart';
 import 'package:flutter/material.dart';
 
 //Custom widgets
@@ -43,19 +44,7 @@ class _OrderPageState extends State<OrderPage>{
       margin: EdgeInsets.only(top:20.0),
       padding: EdgeInsets.symmetric(horizontal:10.0),
     child: Column(
-              children: <Widget>[
-                // ListTile(
-                //   leading: Text("Cart Total", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.grey)),
-                //   trailing:Text("23.0", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black)) ,
-                // ),
-                //  ListTile(
-                //   leading: Text("Cart Total", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.grey)),
-                //   trailing:Text("23.0", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black)) ,
-                // ),
-                //  ListTile(
-                //   leading: Text("Cart Total", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.grey)),
-                //   trailing:Text("23.0", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black)) ,
-                // ),
+              children: <Widget>[ 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -87,7 +76,13 @@ class _OrderPageState extends State<OrderPage>{
                     Text("26", style:TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black),),
                   ],
                 ),
-                SizedBox(height:20.0),
+                SizedBox(height:20.0
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context ) => SignInPage()));
+                  },
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 50.0,
