@@ -1,23 +1,31 @@
-import 'package:MyFoods/src/data/food_data.dart';
+
+import 'package:MyFoods/src/scoped-model/food_model.dart';
 import 'package:flutter/material.dart';
 import '../widgets/home_top_info.dart';
 import '../widgets/food_category.dart';
 import '../widgets/search_field.dart';
 import '../widgets/bought_foods.dart';
 
-//Data
-import '../data/food_data.dart';
+
 import '../models/food_model.dart';
 
 class HomePage extends StatefulWidget
 {
+final FoodModel foodModel;
+
+HomePage(this.foodModel);
+
   @override
   _HomePageState  createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>{
 
-  List <Food> _foods = foods;
+  @override
+  void initState() {
+    widget.foodModel.fetchFoods();
+    super.initState();
+  }
  
    @override
    Widget build(BuildContext context)
@@ -55,7 +63,7 @@ class _HomePageState extends State<HomePage>{
           ),
           SizedBox(height:20.0),
           Column(
-            children: _foods.map(_buildFoodItems).toList(),
+            children: widget.foodModel.foods.map(_buildFoodItems).toList(),
           ),
          ],
        ),

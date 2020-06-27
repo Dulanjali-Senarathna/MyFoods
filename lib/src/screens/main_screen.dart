@@ -36,12 +36,12 @@ ProfilePage profilePage;
     //call the fetch method on food
     widget.foodModel.fetchFoods();
     super.initState();
-    homePage = HomePage();
+    homePage = HomePage(widget.foodModel);
     orderPage = OrderPage();
     favouritePage = FavouritePage();
     profilePage = ProfilePage();
 
-    pages = [HomePage(),OrderPage(), FavouritePage(), ProfilePage()]; //Array of pages
+    pages = [homePage,orderPage, favouritePage, profilePage]; //Array of pages
 
     currentPage = homePage;
   }

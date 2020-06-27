@@ -23,22 +23,25 @@ class FoodModel extends Model
     http.get("http://192.168.8.101/flutter_food_app/api/foods/getFoods.php").then((http.Response response)
     {
      // print("Fetching data: ${response.body}");
-     final List<Food> fetchedFoodItems = [];
+     
       final List fetchedData = json.decode(response.body);
-      print(fetchedData);
-      fetchedData.forEach((data) {
-        Food food = Food(
-          id: data["id"],
-          category: data["category"],
-          discount: double.parse(data["discount"]),
-          imagePath: data["imagePath"],
-          name: data["name"],
-          price: double.parse(data["price"]),
-        );
+      final List<Food> fetchedFoodItems = [];
+      //print(fetchedData);
+
+       fetchedData.forEach((data) {
+         Food food = Food(
+           id: data["id"],
+           category: data["category_id"],
+           discount: double.parse(data["discount"]),
+           imagePath: data["image_path"],
+           name: data["title"],
+           price: double.parse(data["price"]),
+         );
+
         fetchedFoodItems.add(food);
       });
       _foods = fetchedFoodItems;
-      print(_foods);
+     
     });
     
   }
