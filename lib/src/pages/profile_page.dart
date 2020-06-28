@@ -1,4 +1,5 @@
 import 'package:MyFoods/src/widgets/custome_list_tile.dart';
+import 'package:MyFoods/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget
@@ -58,18 +59,7 @@ class _ProfilePageState extends State< ProfilePage>{
                     SizedBox(height:10.0),
                     Text("0713725452", style: TextStyle(color:Colors.grey),),
                     SizedBox(height:20.0),
-                    Container(
-                      height: 25.0,
-                      width: 60.0,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color:Colors.blue
-                        ),
-                        
-                        borderRadius:BorderRadius.circular(20.0)
-                      ),
-                      child: Center(child:Text("Edit" , style:TextStyle(color:Colors.blue, fontSize:16.0),),),
-                    ),
+                   SmallButton(btnText: "Edit",),
                   ],
                 ),
               ],

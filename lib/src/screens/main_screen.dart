@@ -42,7 +42,7 @@ ProfilePage profilePage;
     favouritePage = FavouritePage();
     profilePage = ProfilePage();
 
-    pages = [homePage,orderPage, favouritePage, profilePage]; //Array of pages
+    pages = [homePage, favouritePage,orderPage, profilePage]; //Array of pages
 
     currentPage = homePage;
     super.initState();
@@ -67,12 +67,12 @@ ProfilePage profilePage;
             title: Text("Home")
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-             title: Text("Orders")
+            icon: Icon(Icons.explore),
+            title: Text("Explore")
             ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text("Favourites")
+            icon: Icon(Icons.shopping_cart),
+             title: Text("Orders")
             ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
