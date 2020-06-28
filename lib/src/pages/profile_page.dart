@@ -1,3 +1,4 @@
+import 'package:MyFoods/src/widgets/custome_list_tile.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget
@@ -67,6 +68,44 @@ class _ProfilePageState extends State< ProfilePage>{
                 ],
               ),
             ],
+          ),
+          SizedBox(height:30.0),
+          Text(
+          "Account",style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold
+          ),
+          ),
+          SizedBox(height:20.0),
+          Card(
+            elevation: 3.0,
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children:<Widget>[
+                  CustomerListTile(
+                    icon: Icons.location_on,
+                    text: "Location",
+                  ),
+                  Divider(height: 10.0, color: Colors.grey,),
+                  CustomerListTile(
+                    icon: Icons.visibility,
+                    text: "Change Password",
+                  ),
+                  Divider(height: 10.0, color: Colors.grey,),
+                  CustomerListTile(
+                    icon: Icons.shopping_cart,
+                    text: "Shipping",
+                  ),
+                  Divider(height: 10.0, color: Colors.grey,),
+                   CustomerListTile(
+                    icon: Icons.payment,
+                    text: "Payment",
+                  ),
+                  Divider(height: 10.0, color: Colors.grey,),
+                ],
+              ),
+              ),
           ),
         ],
       ),
