@@ -16,11 +16,14 @@ class _FavouritePageState extends State< FavouritePage>{
         padding: EdgeInsets.symmetric(horizontal:16.0, vertical: 60.0),
         child:Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget> [
-        Text("All Food Items", style: TextStyle(
+          children: <Widget> [
+          Text(
+            "All Food Items", 
+            style: TextStyle(
           fontSize:20.0,
           fontWeight:FontWeight.bold
-        ),),
+        ),
+        ),
         SizedBox(height:20.0),
         Container(
           margin: EdgeInsets.symmetric(vertical:10.0),
@@ -58,13 +61,17 @@ class _FavouritePageState extends State< FavouritePage>{
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Breakfast",style:TextStyle(fontSize: 16.0, fontWeight:FontWeight.bold),),
+                  Text(
+                    "Breakfast",
+                    style:TextStyle(
+                      fontSize: 16.0, fontWeight:FontWeight.bold),
+                      ),
                   SizedBox(height:10.0),
                   Container(
                     width: 200.0,
-                    child: Text("This is the description of the food item. This is really awesome"),  
+                    child: Text("This is the description of the food item. "),  
                   ),
-                  SizedBox(height:15.0),
+                  SizedBox(height:14.0),
                  Container(
                    width: 200.0,
                    child: Row(
@@ -77,7 +84,7 @@ class _FavouritePageState extends State< FavouritePage>{
                       ),),
                       SmallButton(btnText: "Buy",),
                     ],
-                  )
+                  ),
                  ),
                 ],
               ),

@@ -1,3 +1,4 @@
+import 'package:MyFoods/src/widgets/button.dart';
 import 'package:flutter/material.dart';
 import '../pages/signin_page.dart';
 
@@ -122,21 +123,7 @@ class _SignUpPageState extends State<SignUpPage>{
                   ),
                 ),
                 SizedBox(height:30.0),
-                Container(
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                  child: Center(
-                    child:Text("Sign Up",
-                    style: TextStyle(
-                    color:Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold
-                    ),),
-                  ),
-                ),
+                Button(btnText:"Sign Up"),
                 Divider(height: 20.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
