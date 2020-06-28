@@ -10,8 +10,67 @@ class _ProfilePageState extends State< ProfilePage>{
   @override
   Widget build(BuildContext context)
   {
-    return Center(
-      child: Text("Profile"),
+    return Scaffold(
+      Container(
+        padding: EdgeInsets.symmetric(vertical:50.0, horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:<Widget>[
+          Text("Profile", style: TextStyle(
+            fontSize:32.0,
+            fontWeight:FontWeight.bold
+          ),),
+          SizedBox(height:20.0),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 120.0,
+                width: 120.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(60.0),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 3.0,
+                      offset: Offset(0,4.0),
+                      color: Colors.black38
+                    ),
+                  ],
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/breakfast.jpeg",),
+                    fit: BoxFit.cover,
+                    ),
+                ),
+                //child: Image.asset("assets/images/breakfast.jpeg",fit: BoxFit.cover,),
+              ),
+              SizedBox(width:20.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget> [
+                  Text("Dulanjali Senarathna", style: TextStyle(fontSize:16.0),),
+                  SizedBox(height:10.0),
+                  Text("0713725452", style: TextStyle(color:Colors.grey),),
+                  SizedBox(height:20.0),
+                  Container(
+                    height: 25.0,
+                    width: 60.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color:Colors.blue
+                      ),
+                      color:Colors.red,
+                      borderRadius:BorderRadius.circular(20.0)
+                    ),
+                    child: Center(child:Text("Edit" , style:TextStyle(color:Colors.white, fontSize:16.0),),),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+      ),
     );
   }
 }
