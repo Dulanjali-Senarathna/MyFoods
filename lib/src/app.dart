@@ -1,23 +1,24 @@
+import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'screens/main_screen.dart';
-import 'package:MyFoods/src/scoped-model/food_model.dart';
+
 
 class App extends StatelessWidget
 {
 
- final FoodModel foodModel = FoodModel();
+ final MainModel mainModel = MainModel();
 
   @override
   Widget build(BuildContext context)
   {
-    return ScopedModel<FoodModel>(
-      model: FoodModel(),
+    return ScopedModel<MainModel>(
+      model: mainModel,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "My Foods",
         theme: ThemeData(primaryColor:Colors.blueAccent),
-        home: MainScreen(foodModel:foodModel),
+        home: MainScreen(model:mainModel),
       ),
 
     );

@@ -1,6 +1,6 @@
 import 'package:MyFoods/src/pages/favourite_page.dart';
 import 'package:MyFoods/src/pages/profile_page.dart';
-import 'package:MyFoods/src/scoped-model/food_model.dart';
+import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
 import '../pages/order_page.dart';
@@ -9,9 +9,9 @@ import '../pages/order_page.dart';
 class MainScreen extends StatefulWidget
 {
 
-final FoodModel foodModel;
+final MainModel model;
 
-MainScreen({this.foodModel});
+MainScreen({this.model});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -34,9 +34,10 @@ ProfilePage profilePage;
   void initState() {
     
     //call the fetch method on food
-    widget.foodModel.fetchFoods();
-    super.initState();
-    homePage = HomePage(widget.foodModel);
+    //widget.foodModel.fetchFoods();
+    widget.model.fetchFoods();
+    
+    homePage = HomePage();
     orderPage = OrderPage();
     favouritePage = FavouritePage();
     profilePage = ProfilePage();
@@ -44,6 +45,7 @@ ProfilePage profilePage;
     pages = [homePage,orderPage, favouritePage, profilePage]; //Array of pages
 
     currentPage = homePage;
+    super.initState();
   }
 
   @override
