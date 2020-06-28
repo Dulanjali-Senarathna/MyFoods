@@ -10,8 +10,8 @@ class _ProfilePageState extends State< ProfilePage>{
   @override
   Widget build(BuildContext context)
   {
-    return Scaffold(
-      Container(
+    return Scaffold (
+      body:Container(
         padding: EdgeInsets.symmetric(vertical:50.0, horizontal: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,10 +59,10 @@ class _ProfilePageState extends State< ProfilePage>{
                       border: Border.all(
                         color:Colors.blue
                       ),
-                      color:Colors.red,
+                      
                       borderRadius:BorderRadius.circular(20.0)
                     ),
-                    child: Center(child:Text("Edit" , style:TextStyle(color:Colors.white, fontSize:16.0),),),
+                    child: Center(child:Text("Edit" , style:TextStyle(color:Colors.blue, fontSize:16.0),),),
                   ),
                 ],
               ),
