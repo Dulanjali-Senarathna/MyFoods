@@ -13,35 +13,58 @@ class FoodModel extends Model
      return List.from(_foods);
    }
 
-  void addFood(Food food)
+  void addFood(Food food) async
   {
-    _foods.add(food);
+    final Map<String,dynamic> foodData = 
+    {
+      "title" : food.name,
+      "description" : food.description,
+      "category" : food.category,
+      "price" : food.price,
+      "discount" : food.discount,
+    };
+    //_foods.add(food);
+    final http.Response response = await http.post("https://myfoods-796ad.firebaseio.com/foods.json", body:json.encode(foodData));
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+
+    //print(responseData ["name"]);
+    Food foodWithID = Food(
+      id: responseData["name"],
+      name: food.name,
+      description: food.description,
+      category: food.category,
+      discount: food.discount,
+      price: food.price,
+    );
+    _foods.add(foodWithID);
+    print(_foods[0].discount);
   }
 
   void fetchFoods()
   {
-    http.get("http://192.168.8.101/flutter_food_app/api/foods/getFoods.php").then((http.Response response)
+    http.get("https://myfoods-796ad.firebaseio.com/foods.json").then((http.Response response)
     {
      // print("Fetching data: ${response.body}");
      
-      final List fetchedData = json.decode(response.body);
-      final List<Food> fetchedFoodItems = [];
-      //print(fetchedData);
+      final Map<String,dynamic> fetchedData = json.decode(response.body);
+      print(fetchedData);
 
-       fetchedData.forEach((data) {
-         Food food = Food(
-           id: data["id"],
-           category: data["category_id"],
-           discount: double.parse(data["discount"]),
-           imagePath: data["image_path"],
-           name: data["title"],
-           price: double.parse(data["price"]),
-         );
+      final List<Food> foodItems = [];
 
-        fetchedFoodItems.add(food);
-      });
-      _foods = fetchedFoodItems;
-     
+      fetchedData.forEach((String id, dynamic foodData) {
+        Food foodItem = Food(
+          id: id,
+          name: foodData["title"],
+          description: foodData ["description"],
+          category: foodData ["category"],
+          price: foodData ["price"],
+          discount: foodData ["discount"],
+        );
+        foodItems.add(foodItem);
+       });
+     _foods = foodItems;
+     print(_foods);
     });
     
   }
