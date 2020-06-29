@@ -19,8 +19,8 @@ class App extends StatelessWidget
         debugShowCheckedModeBanner: false,
         title: "My Foods",
         theme: ThemeData(primaryColor:Colors.blueAccent),
-        //home: MainScreen(model:mainModel),
-        home: AddFoodItem(),
+        home: MainScreen(model:mainModel),
+       // home: AddFoodItem(),
       ),
 
     );

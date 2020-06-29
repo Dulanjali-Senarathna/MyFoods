@@ -37,8 +37,7 @@ class FoodModel extends Model
       discount: food.discount,
       price: food.price,
     );
-    _foods.add(foodWithID);
-    print(_foods[0].discount);
+    
   }
 
   void fetchFoods()
