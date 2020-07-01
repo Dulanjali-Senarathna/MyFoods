@@ -7,15 +7,24 @@ import 'package:http/http.dart' as http;
 class FoodModel extends Model
 {
   List<Food> _foods = [];
+  bool _isLoading = false;
+
+  bool isLoading()
+  {
+    return _isLoading;
+  }
 
    List<Food> get foods
    {
      return List.from(_foods);
    }
 
-  void addFood(Food food) async
+  Future<bool> addFood(Food food) async
   {
-    final Map<String,dynamic> foodData = 
+    _isLoading = true;
+    notifyListeners();
+    try{
+      final Map<String,dynamic> foodData = 
     {
       "title" : food.name,
       "description" : food.description,
@@ -37,6 +46,17 @@ class FoodModel extends Model
       discount: food.discount,
       price: food.price,
     );
+    _isLoading = false;
+    notifyListeners();
+    fetchFoods();
+    return Future.value(true);
+    }catch(e)
+    {
+      _isLoading = false;
+    notifyListeners();
+    return Future.value(true);
+      //print("Connection error: $e");
+    }
     
   }
 
@@ -63,7 +83,7 @@ class FoodModel extends Model
         foodItems.add(foodItem);
        });
      _foods = foodItems;
-     print(_foods);
+     notifyListeners();
     });
     
   }

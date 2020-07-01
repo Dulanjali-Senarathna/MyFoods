@@ -16,27 +16,49 @@ class _FavouritePageState extends State< FavouritePage>{
   Widget build(BuildContext context)
   {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal:16.0, vertical: 60.0),
-        child: ScopedModelDescendant <MainModel>(
+      body: ScopedModelDescendant <MainModel>(
           builder: (BuildContext context, Widget child, MainModel model)
           {
             model.fetchFoods();
             List<Food> foods = model.foods;
-            return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal:20.0),
+                          child: ListView(
           children: foods.map((Food food)
           {
-            return FoodItemCard(
-              food.name,
-              food.description,
-              food.price.toString(),
-            );
+              return FoodItemCard(
+                food.name,
+                food.description,
+                food.price.toString(),
+              );
           }).toList(),
-    );
+    ),
+            );
           },
-        ),
-      ),
+        )
     );
   }
 }
+
+// Container(
+//         color: Colors.white,
+//         padding: EdgeInsets.symmetric(horizontal:16.0),
+//         child: ScopedModelDescendant <MainModel>(
+//           builder: (BuildContext context, Widget child, MainModel model)
+//           {
+//             model.fetchFoods();
+//             List<Food> foods = model.foods;
+//             return Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: foods.map((Food food)
+//           {
+//             return FoodItemCard(
+//               food.name,
+//               food.description,
+//               food.price.toString(),
+//             );
+//           }).toList(),
+//     );
+//           },
+//         ),
+//       ),

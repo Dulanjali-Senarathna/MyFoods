@@ -33,8 +33,9 @@ class _HomePageState extends State<HomePage>{
    Widget build(BuildContext context)
    {
      return Scaffold(
+       backgroundColor: Colors.white,
        body: ListView(
-         padding: EdgeInsets.only(top:50.0, left:20.0, right:20.0),
+         padding: EdgeInsets.only(left:20.0, right:20.0),
          children:<Widget>[
           HomeTopInfo(),
           FoodCategory(),

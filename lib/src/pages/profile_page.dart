@@ -17,9 +17,10 @@ class _ProfilePageState extends State< ProfilePage>{
   Widget build(BuildContext context)
   {
     return Scaffold (
+      backgroundColor: Colors.white,
       body:SingleChildScrollView(
               child: Container(
-          padding: EdgeInsets.symmetric(vertical:50.0, horizontal: 20.0),
+          padding: EdgeInsets.symmetric( horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:<Widget>[
