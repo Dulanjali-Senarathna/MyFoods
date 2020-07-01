@@ -7,11 +7,22 @@ import 'package:scoped_model/scoped_model.dart';
 
 class FavouritePage extends StatefulWidget
 {
+  final MainModel model;
+
+  FavouritePage({this.model});
   @override
   _FavouritePageState  createState() => _FavouritePageState();
 }
 
 class _FavouritePageState extends State< FavouritePage>{
+
+@override
+  void initState() {
+   
+    super.initState();
+    widget.model.fetchFoods();
+  }
+
   @override
   Widget build(BuildContext context)
   {
@@ -19,11 +30,13 @@ class _FavouritePageState extends State< FavouritePage>{
       body: ScopedModelDescendant <MainModel>(
           builder: (BuildContext context, Widget child, MainModel model)
           {
-            model.fetchFoods();
+            model.fetchFoods();//this will fetch and notifylisteners()
             List<Food> foods = model.foods;
             return Container(
               padding: EdgeInsets.symmetric(horizontal:20.0),
-                          child: ListView(
+          child: RefreshIndicator(
+            onRefresh: model.fetchFoods,
+          child: ListView(
           children: foods.map((Food food)
           {
               return FoodItemCard(
@@ -33,6 +46,7 @@ class _FavouritePageState extends State< FavouritePage>{
               );
           }).toList(),
     ),
+                          ),
             );
           },
         )

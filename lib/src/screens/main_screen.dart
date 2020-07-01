@@ -36,7 +36,7 @@ ProfilePage profilePage;
     
     //call the fetch method on food
     //widget.foodModel.fetchFoods();
-    widget.model.fetchFoods();
+    //widget.model.fetchFoods();
     
     homePage = HomePage();
     orderPage = OrderPage();

@@ -46,9 +46,11 @@ class FoodModel extends Model
       discount: food.discount,
       price: food.price,
     );
+
+    _foods.add(foodWithID);
     _isLoading = false;
     notifyListeners();
-    fetchFoods();
+    //fetchFoods();
     return Future.value(true);
     }catch(e)
     {
@@ -60,11 +62,15 @@ class FoodModel extends Model
     
   }
 
-  void fetchFoods()
+  Future <bool> fetchFoods() async
   {
-    http.get("https://myfoods-796ad.firebaseio.com/foods.json").then((http.Response response)
+    _isLoading = true;
+    notifyListeners();
+    try{
+      final http.Response response = await http.get("https://myfoods-796ad.firebaseio.com/foods.json");
     {
      // print("Fetching data: ${response.body}");
+
      
       final Map<String,dynamic> fetchedData = json.decode(response.body);
       print(fetchedData);
@@ -80,11 +86,20 @@ class FoodModel extends Model
           price: foodData ["price"],
           discount: foodData ["discount"],
         );
+
         foodItems.add(foodItem);
        });
      _foods = foodItems;
+     _isLoading = false;
      notifyListeners();
-    });
-    
+     return Future.value(true); 
   }
+    }catch(error)
+    {
+    _isLoading = false;
+     notifyListeners();
+     return Future.value(false);
+    }
+}
+
 }
