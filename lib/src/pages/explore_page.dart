@@ -2,6 +2,7 @@ import 'package:MyFoods/src/admin/pages/add_food_item.dart';
 import 'package:MyFoods/src/models/food_model.dart';
 import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:MyFoods/src/widgets/food_item_card.dart';
+import 'package:MyFoods/src/widgets/show_dialog.dart';
 import 'package:MyFoods/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -62,6 +63,15 @@ GlobalKey <ScaffoldState> _explorePageScafofoldKey = GlobalKey();
                           );
                           _explorePageScafofoldKey.currentState.showSnackBar(snackbar);
                 }
+              },
+              onDoubleTap: ()
+              {
+                //delete food item
+                showLoadingIndicator(context, "Deleting food item..");
+                model.deleteFood(model.foods[index].id).then((bool response)
+                {
+                  Navigator.of(context).pop();
+                });
               },
               child: FoodItemCard(
                 model.foods[index].name,

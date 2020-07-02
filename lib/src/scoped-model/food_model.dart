@@ -145,6 +145,27 @@ Future<bool> updateFood(Map<String, dynamic> foodData, String foodId) async
   }
 }
 
+Future<bool> deleteFood(String foodId) async
+{
+  _isLoading = true;
+  notifyListeners();
+ try{
+    final http.Response response = await http.delete("https://myfoods-796ad.firebaseio.com/foods/${foodId}.json");
+
+    //delete item from the list of food items
+    _foods.removeWhere((Food food) => food.id == foodId);
+
+    _isLoading = false;
+    notifyListeners();
+    return Future.value(true);
+ }catch(error)
+ {
+    _isLoading = false;
+    notifyListeners();
+    return Future.value(false);
+ }
+}
+
 Food getFoodItemById(String foodId)
 {
   Food food;
