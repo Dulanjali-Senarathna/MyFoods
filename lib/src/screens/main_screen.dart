@@ -65,6 +65,11 @@ ProfilePage profilePage;
               fontSize:16.0, 
               fontWeight:FontWeight.bold),),
           centerTitle: true,
+          actions:<Widget> [ 
+            IconButton(icon: Icon(Icons.notifications_none,  color: Theme.of(context).primaryColor,), onPressed: (){}),
+             IconButton(icon: _buildShoppingCard(), onPressed: (){})
+        
+          ],
         ),
         drawer: Drawer(
           child: Column(
@@ -116,5 +121,31 @@ ProfilePage profilePage;
         body: currentPage,
       ),
     ); 
+  }
+
+  Widget _buildShoppingCard()
+  {
+    return Stack(
+      children: <Widget>[
+       
+        Icon(Icons.shopping_cart, color: Theme.of(context).primaryColor,
+        ),
+       Positioned(
+         top: 0.0,
+         right: 0.0,
+         child:  Container(
+          height: 12.0,
+          width: 12.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color:Colors.red 
+          ),
+          child: Center(
+            child:Text("1", style:TextStyle(fontSize: 12.0, color:Colors.white,),),
+          ),
+        ),
+       ),
+      ],
+    );
   }
 }

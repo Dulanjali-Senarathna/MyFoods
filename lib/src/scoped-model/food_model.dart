@@ -89,7 +89,7 @@ class FoodModel extends Model
           description: foodData ["description"],
           category: foodData ["category"],
           price: double.parse(foodData ["price"].toString()),
-          discount: double.parse(foodData ["discount"]),
+          discount: double.parse(foodData ["discount"].toString()),
         );
 
         foodItems.add(foodItem);

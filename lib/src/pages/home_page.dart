@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage>{
        child: BoughtFoods(
          id: food.id,
          name: food.name,
-         imagePath: food.imagePath,
+         imagePath: "assets/images/lunch.jpeg",
          category: food.category,
          discount: food.discount,
          price: food.price,
