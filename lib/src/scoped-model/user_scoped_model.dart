@@ -14,12 +14,14 @@ class UserModel extends Model
     {
       "email": email,
       "password" : password,
-      "returnsecureToken" : true,
+      "returnSecureToken" : true,
     };
     try
     {
-      http.Response response = await http.post("https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyDbYos1t5GwqPkXWn57UR5RRFVsqLQ0-bo", body: json.encode(authData),
-      headers: {'Content-Type':'application/json'},
+      http.Response response = await http.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDbYos1t5GwqPkXWn57UR5RRFVsqLQ0-bo", 
+      body: json.encode(authData),
+      headers: {'Content-Type': 'application/json'},
       );
 
       print("Printing the response body : ${response.body}");

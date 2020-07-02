@@ -1,3 +1,4 @@
+import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:MyFoods/src/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -218,7 +219,7 @@ class _SignUpPageState extends State<SignUpPage>{
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     child: Center(
-                      child:Text("Sign In",
+                      child:Text("Sign Up",
                       style: TextStyle(
                       color:Colors.white,
                       fontSize: 18.0,
