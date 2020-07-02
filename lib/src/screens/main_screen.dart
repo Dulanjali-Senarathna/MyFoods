@@ -1,5 +1,5 @@
 import 'package:MyFoods/src/admin/pages/add_food_item.dart';
-import 'package:MyFoods/src/pages/favourite_page.dart';
+import 'package:MyFoods/src/pages/explore_page.dart';
 import 'package:MyFoods/src/pages/profile_page.dart';
 import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ ProfilePage profilePage;
     
     homePage = HomePage();
     orderPage = OrderPage();
-    favouritePage = FavouritePage();
+    favouritePage = FavouritePage(model: widget.model,);
     profilePage = ProfilePage();
 
     pages = [homePage, favouritePage,orderPage, profilePage]; //Array of pages
@@ -58,6 +58,13 @@ ProfilePage profilePage;
           backgroundColor:Colors.white,
           elevation:0,
           iconTheme: IconThemeData(color:Colors.black),
+          title: Text(
+          currentTabIndex == 0 ? "My Foods" : currentTabIndex == 1 ? "All Food Items" : currentTabIndex == 2 ? "Orders" : "Profile", 
+          style: TextStyle(
+              color:Colors.black, 
+              fontSize:16.0, 
+              fontWeight:FontWeight.bold),),
+          centerTitle: true,
         ),
         drawer: Drawer(
           child: Column(
