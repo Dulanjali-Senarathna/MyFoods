@@ -1,5 +1,6 @@
 import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:MyFoods/src/widgets/button.dart';
+import 'package:MyFoods/src/widgets/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import '../pages/signin_page.dart';
@@ -210,6 +211,7 @@ class _SignUpPageState extends State<SignUpPage>{
         return GestureDetector(
       onTap: ()
       {
+        showLoadingIndicator(context, "Signin up..");
         onSubmit(model.authenticate);
       },
           child: Container(
@@ -238,7 +240,17 @@ class _SignUpPageState extends State<SignUpPage>{
       _formKey.currentState.save();
 
       print("The email : $_email, The password: $_password");
-      authenticate(_email,_password);
+      authenticate(_email,_password).then((final response){
+        Navigator.of(context).pop();
+        if(!response['hasError'])
+        {
+         
+        }
+        else
+        {
+         
+        }
+      });
     }
   }
 }

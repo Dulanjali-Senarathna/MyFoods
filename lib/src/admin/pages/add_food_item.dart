@@ -1,5 +1,6 @@
 import 'package:MyFoods/src/models/food_model.dart';
 import 'package:MyFoods/src/scoped-model/main_model.dart';
+import 'package:MyFoods/src/scoped-model/user_scoped_model.dart';
 import 'package:MyFoods/src/widgets/button.dart';
 import 'package:MyFoods/src/widgets/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ class _AddFoodItemState extends State<AddFoodItem>
 
   GlobalKey <FormState> _foodItemFormKey = GlobalKey();
   GlobalKey <ScaffoldState>  _scaffoldStateKey = GlobalKey();
+
+  
 
   @override
   Widget build(BuildContext context)

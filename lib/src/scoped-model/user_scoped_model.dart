@@ -7,15 +7,31 @@ import 'package:http/http.dart' as http;
 class UserModel extends Model
 {
   User _authenticatedUser;
+  bool _isLoading= false;
 
-  void authenticate(String email, String password) async
+  User get authenticatedUser
   {
+    return _authenticatedUser;
+  }
+
+  bool isLoading()
+  {
+    return _isLoading;
+  }
+
+  Future<Map<String,dynamic>> authenticate(String email, String password) async
+  {
+    _isLoading = true;
+    notifyListeners();
+
     Map<String, dynamic> authData = 
     {
       "email": email,
       "password" : password,
       "returnSecureToken" : true,
     };
+    String message;
+    bool hasError= false;
     try
     {
       http.Response response = await http.post(
@@ -24,10 +40,48 @@ class UserModel extends Model
       headers: {'Content-Type': 'application/json'},
       );
 
-      print("Printing the response body : ${response.body}");
+      Map <String,dynamic> responseBody = json.decode(response.body);
+
+      print("The response body again: $responseBody");
+
+     if(responseBody.containsKey('idToken'))
+     {
+        _authenticatedUser = User(
+        id: responseBody['localId'],
+        email: responseBody['email'],
+        token: responseBody['idToken'],
+        userType: 'customer',
+         );
+         message = "Sign in successfully";
+
+     }
+     else
+     {
+       if(responseBody['error']['message'] == 'EMAIL_EXISTS')
+       {
+         hasError = true;
+         message = "Email is already exists";
+         //print("The email already exists");
+       }
+     }
+      _isLoading = false;
+      return {
+        'message' : message,
+        'hasError' : hasError,
+      };
+      
+     
+
     }catch(error)
     {
-      print("The error in signin up: $error");
+       _isLoading = false;
+      notifyListeners();
+      
+      return 
+      {
+        'message' : 'Failed to sign up successfully',
+        'hasError' : !hasError,
+      };
     }
   }
   
