@@ -1,3 +1,4 @@
+import 'package:MyFoods/src/enums/auth_model.dart';
 import 'package:MyFoods/src/scoped-model/main_model.dart';
 import 'package:MyFoods/src/widgets/button.dart';
 import 'package:MyFoods/src/widgets/show_dialog.dart';
@@ -19,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage>{
   String _email, _password,_username;
 
   GlobalKey <FormState> _formKey  = GlobalKey();
+   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   Widget _buildEmailTextField()
   {
@@ -146,6 +148,7 @@ class _SignUpPageState extends State<SignUpPage>{
   {
     return SafeArea(
           child: Scaffold(
+            key: _scaffoldKey,
         resizeToAvoidBottomPadding:false,
         backgroundColor: Colors.grey.shade100,
         body: Padding(
@@ -240,15 +243,23 @@ class _SignUpPageState extends State<SignUpPage>{
       _formKey.currentState.save();
 
       print("The email : $_email, The password: $_password");
-      authenticate(_email,_password).then((final response){
+      authenticate(_email,_password, authMode: AuthMode.SignUp).then((final response){
         Navigator.of(context).pop();
         if(!response['hasError'])
         {
-         
+         Navigator.of(context).pop();
+          Navigator.of(context).pushReplacementNamed("/mainscreen");
         }
         else
         {
-         
+          Navigator.of(context).pop();
+          _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              duration: Duration(seconds:2),
+              backgroundColor: Colors.red,
+              content: Text(response['message'])
+            ),
+          );
         }
       });
     }

@@ -1,3 +1,4 @@
+import 'package:MyFoods/src/enums/auth_model.dart';
 import 'package:MyFoods/src/models/user_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -19,7 +20,7 @@ class UserModel extends Model
     return _isLoading;
   }
 
-  Future<Map<String,dynamic>> authenticate(String email, String password) async
+  Future<Map<String,dynamic>> authenticate(String email, String password, {AuthMode authMode = AuthMode.SignIn}) async
   {
     _isLoading = true;
     notifyListeners();
@@ -34,15 +35,25 @@ class UserModel extends Model
     bool hasError= false;
     try
     {
-      http.Response response = await http.post(
+       http.Response response;
+      if(authMode == AuthMode.SignUp)
+      {
+        response = await http.post(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDbYos1t5GwqPkXWn57UR5RRFVsqLQ0-bo", 
       body: json.encode(authData),
       headers: {'Content-Type': 'application/json'},
       );
 
+      }else if(authMode == AuthMode.SignIn)
+      {
+         response = await http.post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDbYos1t5GwqPkXWn57UR5RRFVsqLQ0-bo", 
+      body: json.encode(authData),
+      headers: {'Content-Type': 'application/json'},
+      );
+      }
+     
       Map <String,dynamic> responseBody = json.decode(response.body);
-
-      print("The response body again: $responseBody");
 
      if(responseBody.containsKey('idToken'))
      {
@@ -52,17 +63,33 @@ class UserModel extends Model
         token: responseBody['idToken'],
         userType: 'customer',
          );
-         message = "Sign in successfully";
 
+         if(authMode == AuthMode.SignUp)
+         {
+            message = "Sign up successfully";
+         }
+         else
+         {
+            message = "Sign in successfully";
+         }
+         
      }
      else
      {
+       hasError = true;
        if(responseBody['error']['message'] == 'EMAIL_EXISTS')
        {
-         hasError = true;
          message = "Email is already exists";
          //print("The email already exists");
        }
+       else if(responseBody['error']['message'] == "EMAIL_NOT_FOUND")
+         {
+           message = "Email does not exist";
+         }
+         else if(responseBody['error']['message'] == "INVALID_PASSWORD")
+         {
+           message = "Password is incorrect";
+         }
      }
       _isLoading = false;
       return {
