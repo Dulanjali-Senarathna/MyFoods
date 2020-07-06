@@ -28,7 +28,7 @@ Widget currentPage;
 
 HomePage homePage;
 OrderPage orderPage;
-FavouritePage favouritePage;
+ExplorePage explorePage;
 ProfilePage profilePage;
 
 @override
@@ -40,10 +40,10 @@ ProfilePage profilePage;
     
     homePage = HomePage();
     orderPage = OrderPage();
-    favouritePage = FavouritePage(model: widget.model,);
+    explorePage = ExplorePage(model: widget.model,);
     profilePage = ProfilePage();
 
-    pages = [homePage, favouritePage,orderPage, profilePage]; //Array of pages
+    pages = [homePage, explorePage,orderPage, profilePage]; //Array of pages
 
     currentPage = homePage;
     super.initState();

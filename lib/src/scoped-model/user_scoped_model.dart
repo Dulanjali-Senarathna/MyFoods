@@ -15,7 +15,7 @@ class UserModel extends Model
     return _authenticatedUser;
   }
 
-  bool isLoading()
+  bool get isLoading
   {
     return _isLoading;
   }

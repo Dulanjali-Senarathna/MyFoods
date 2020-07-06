@@ -20,11 +20,11 @@ class App extends StatelessWidget
         debugShowCheckedModeBanner: false,
         title: "My Foods",
         theme: ThemeData(primaryColor:Colors.blueAccent),
-        home: MainScreen(model:mainModel),
+       // home: MainScreen(model:mainModel),
        // home: AddFoodItem(),
        routes: {
-         "/" : (BuildContext context) => SignInPage(),
-         "/mainscreen" : (BuildContext context) => MainScreen(),
+         '/' : (BuildContext context) => SignInPage(),
+        '/mainscreen' : (BuildContext context) => MainScreen(),
          
        },
       ),

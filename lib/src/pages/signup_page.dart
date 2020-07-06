@@ -248,7 +248,7 @@ class _SignUpPageState extends State<SignUpPage>{
         if(!response['hasError'])
         {
          Navigator.of(context).pop();
-          Navigator.of(context).pushReplacementNamed("/mainscreen");
+          Navigator.of(context).pushNamed('/mainscreen');
         }
         else
         {
@@ -257,7 +257,7 @@ class _SignUpPageState extends State<SignUpPage>{
             SnackBar(
               duration: Duration(seconds:2),
               backgroundColor: Colors.red,
-              content: Text(response['message'])
+              content: Text(response['message']),
             ),
           );
         }

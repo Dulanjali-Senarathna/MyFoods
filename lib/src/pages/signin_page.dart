@@ -94,7 +94,7 @@ class _SignInPageState extends State<SignInPage>{
                     fontWeight: FontWeight.bold,
                     ),
                     ),
-                    SizedBox(height:100.0),
+                    SizedBox(height:50.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget> [
@@ -153,6 +153,7 @@ class _SignInPageState extends State<SignInPage>{
        return GestureDetector(
      onTap: ()
      {
+       
        showLoadingIndicator(context, "Signin in..");
        onSubmit(model.authenticate);
      },
@@ -173,7 +174,7 @@ class _SignInPageState extends State<SignInPage>{
         if(!response['hasError'])
         {
           Navigator.of(context).pop();
-          Navigator.of(context).pushReplacementNamed("/mainscreen");
+          Navigator.of(context).pushReplacementNamed('/mainscreen');
         }
         else
         {

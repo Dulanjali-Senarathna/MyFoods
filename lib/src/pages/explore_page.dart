@@ -7,23 +7,23 @@ import 'package:MyFoods/src/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class FavouritePage extends StatefulWidget
+class ExplorePage extends StatefulWidget
 {
   final MainModel model;
 
-  FavouritePage({this.model});
+  ExplorePage({this.model});
   @override
-  _FavouritePageState  createState() => _FavouritePageState();
+  _ExplorePageState  createState() => _ExplorePageState();
 }
 
-class _FavouritePageState extends State< FavouritePage>{
+class _ExplorePageState extends State< ExplorePage>{
 
 GlobalKey <ScaffoldState> _explorePageScafofoldKey = GlobalKey();
 @override
   void initState() {
    
     super.initState();
-    widget.model.fetchFoods();
+    
   }
 
   @override

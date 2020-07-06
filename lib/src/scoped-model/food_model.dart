@@ -9,7 +9,7 @@ class FoodModel extends Model
   List<Food> _foods = [];
   bool _isLoading = false;
 
-  bool isLoading()
+  bool get isLoading
   {
     return _isLoading;
   }
@@ -75,7 +75,6 @@ class FoodModel extends Model
       final http.Response response = await http.get("https://myfoods-796ad.firebaseio.com/foods.json");
     {
      // print("Fetching data: ${response.body}");
-
      
       final Map<String,dynamic> fetchedData = json.decode(response.body);
       print(fetchedData);

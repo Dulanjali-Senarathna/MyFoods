@@ -49,6 +49,7 @@ class _AddFoodItemState extends State<AddFoodItem>
               onPressed: ()
               {
                 Navigator.of(context).pop(false);
+                
               }),
         ),
         body: SingleChildScrollView(
@@ -83,7 +84,7 @@ class _AddFoodItemState extends State<AddFoodItem>
                         return GestureDetector(
                       onTap: (){
                         onSubmit(model.addFood,model.updateFood);
-                        if(model.isLoading())
+                        if(model.isLoading)
                         {
                           //Ahow loading progress indicator
                           showLoadingIndicator(context, widget.food != null ? "Updating food.." : "Adding food..");
@@ -124,16 +125,26 @@ void onSubmit(Function addFood, Function updateFood ) async
                        if(response)
                        {
                          Navigator.of(context).pop();//to remove the alert dialog
-                        Navigator.of(context).pop(response);//to the previous page
+                         SnackBar snackBar = SnackBar(
+                            
+                          duration: Duration(seconds:2),
+                          backgroundColor: Theme.of(context).primaryColor,
+                          content: Text(
+                            "Food item successfully",style: TextStyle(color:Colors.white,fontSize:16.0),),
+                         );
+
+                         _scaffoldStateKey.currentState.showSnackBar(snackBar);
+                       
                        }
                        else if(!response)
                        {
                          Navigator.of(context).pop();
-                         SnackBar snackbar = SnackBar(
+                         SnackBar snackBar = SnackBar(
                             duration: Duration(seconds:2),
                             backgroundColor: Colors.red,
                           content: Text("Failed to update food item",style: TextStyle(color:Colors.white,fontSize:16.0),),
                           );
+                          _scaffoldStateKey.currentState.showSnackBar(snackBar);
                        }
                       }
                       else if(widget.food == null)
@@ -149,18 +160,18 @@ void onSubmit(Function addFood, Function updateFood ) async
                       if(value)
                       {
                         Navigator.of(context).pop();
-                        SnackBar snackbar = SnackBar(
+                        SnackBar snackBar = SnackBar(
                           content: Text("Food item successfully updated")
                           );
-                          _scaffoldStateKey.currentState.showSnackBar(snackbar);
+                          _scaffoldStateKey.currentState.showSnackBar(snackBar);
                       }
                       else if(!value)
                       {
                         Navigator.of(context).pop();
-                        SnackBar snackbar = SnackBar(
+                        SnackBar snackBar = SnackBar(
                           content: Text("Failed to add Food item")
                           );
-                          _scaffoldStateKey.currentState.showSnackBar(snackbar);
+                          _scaffoldStateKey.currentState.showSnackBar(snackBar);
                       }
                       }
                     }
