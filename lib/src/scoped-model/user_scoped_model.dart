@@ -7,8 +7,14 @@ import 'package:http/http.dart' as http;
 
 class UserModel extends Model
 {
+  List<User> _users = [];
   User _authenticatedUser;
   bool _isLoading= false;
+
+   List<User> get users
+   {
+     return List.from(_users);
+   }
 
   User get authenticatedUser
   {
@@ -20,7 +26,40 @@ class UserModel extends Model
     return _isLoading;
   }
 
-  Future<Map<String,dynamic>> authenticate(String email, String password, {AuthMode authMode = AuthMode.SignIn}) async
+ Future<bool> addUserInfo(Map<String,dynamic> userInfo) async
+  {
+    _isLoading = true;
+    notifyListeners();
+    try{
+      
+    //_foods.add(food);
+    final http.Response response = await http.post("https://myfoods-796ad.firebaseio.com/users.json", body:json.encode(userInfo));
+
+    final Map<String, dynamic> responseData = json.decode(response.body);
+
+   User userWithID = User(
+     id: responseData['name'],
+     email: responseData['email'],
+     username: userInfo ['username'],
+
+   );
+
+    _users.add(userWithID);
+    _isLoading = false;
+    notifyListeners();
+    return Future.value(true);
+    }catch(e)
+    {
+      _isLoading = false;
+    notifyListeners();
+    return Future.value(true);
+     
+    }
+    
+  }
+
+
+  Future<Map<String,dynamic>> authenticate(String email, String password, String username, {AuthMode authMode = AuthMode.SignIn}) async
   {
     _isLoading = true;
     notifyListeners();
@@ -30,6 +69,12 @@ class UserModel extends Model
       "email": email,
       "password" : password,
       "returnSecureToken" : true,
+    };
+
+    Map<String, dynamic> userInfo = 
+    {
+      "email": email,
+      "username" : username,
     };
     String message;
     bool hasError= false;
@@ -43,6 +88,8 @@ class UserModel extends Model
       body: json.encode(authData),
       headers: {'Content-Type': 'application/json'},
       );
+
+      addUserInfo(userInfo);
 
       }else if(authMode == AuthMode.SignIn)
       {
