@@ -59,7 +59,9 @@ class UserModel extends Model
   }
 
 
-  Future<Map<String,dynamic>> authenticate(String email, String password, String username, {AuthMode authMode = AuthMode.SignIn}) async
+  Future<Map<String,dynamic>> authenticate(
+    String email, String password, 
+    {AuthMode authMode = AuthMode.SignIn, Map<String, dynamic> userInfo}) async
   {
     _isLoading = true;
     notifyListeners();
@@ -71,11 +73,6 @@ class UserModel extends Model
       "returnSecureToken" : true,
     };
 
-    Map<String, dynamic> userInfo = 
-    {
-      "email": email,
-      "username" : username,
-    };
     String message;
     bool hasError= false;
     try

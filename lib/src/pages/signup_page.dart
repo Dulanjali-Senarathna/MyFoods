@@ -221,7 +221,7 @@ class _SignUpPageState extends State<SignUpPage>{
                     height: 50.0,
                     decoration: BoxDecoration(
                       color: Colors.blue,
-                      borderRadius: BorderRadius.circular(25.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Center(
                       child:Text("Sign Up",
@@ -243,7 +243,16 @@ class _SignUpPageState extends State<SignUpPage>{
       _formKey.currentState.save();
 
       
-      authenticate(_email,_password, _username, authMode: AuthMode.SignUp).then((final response){
+    Map<String, dynamic> userInfo = 
+    {
+      "email": _email,
+      "username" : _username,
+      "userType": "customer"
+    };
+
+      
+      authenticate(_email,_password,  
+      authMode: AuthMode.SignUp, userInfo: userInfo).then((final response){
         Navigator.of(context).pop();
         if(!response['hasError'])
         {
